@@ -51,8 +51,9 @@ export interface PositionInsight {
   /** false quand ce n'est pas au joueur de jouer : le bouton reste inactif. */
   bestMoveAvailable: boolean;
   requestBestMove: () => void;
+  hideBestMove: () => void;
   showWatch: () => void;
-  clearHints: () => void;
+  hideWatch: () => void;
 }
 
 /** Etat des aides visuelles, attache a une position precise. */
@@ -141,7 +142,15 @@ export function usePositionInsight(input: PositionInsightInput): PositionInsight
     });
   }, [fen]);
 
-  const clearHints = useCallback((): void => setHints(NO_HINTS), []);
+  // Chaque aide se masque separement : cacher le meilleur coup ne doit pas
+  // effacer la piste de lecture, et inversement.
+  const hideBestMove = useCallback((): void => {
+    setHints((previous) => (previous.fen === fen ? { ...previous, bestMove: false } : NO_HINTS));
+  }, [fen]);
+
+  const hideWatch = useCallback((): void => {
+    setHints((previous) => (previous.fen === fen ? { ...previous, watchIndex: null } : NO_HINTS));
+  }, [fen]);
 
   const arrows = useMemo<BoardArrow[]>(
     () => (bestMove ? [{ from: bestMove.from, to: bestMove.to, kind: 'best' as const }] : []),
@@ -169,7 +178,8 @@ export function usePositionInsight(input: PositionInsightInput): PositionInsight
     canRequestBestMove: active && help === 'on_demand',
     bestMoveAvailable: playerToMove,
     requestBestMove,
+    hideBestMove,
     showWatch,
-    clearHints,
+    hideWatch,
   };
 }

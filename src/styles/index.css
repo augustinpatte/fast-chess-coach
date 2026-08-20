@@ -656,15 +656,44 @@ h3 {
   line-height: 1.35;
   overflow-wrap: anywhere;
 }
-.dashboard-best {
-  margin-top: 8px;
-  border-top: 1px solid var(--border);
-  padding-top: 8px;
+/* --------------------- Meilleur coup (avant de jouer) --------------- */
+
+.best-move {
+  margin-top: 10px;
+  background: var(--panel);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 10px 12px;
+  box-shadow: var(--shadow);
+}
+.best-move-head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 8px;
+  margin-bottom: 6px;
+}
+.best-move-head h2 {
+  margin: 0;
+  font-size: 0.72rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--text-soft);
+}
+.best-move-why {
+  margin: 6px 0 0;
+  font-size: 0.72rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--text-soft);
 }
 .best-move-san {
   margin: 0;
-  font-size: 1.05rem;
+  font-size: 1.3rem;
   font-weight: 700;
+  line-height: 1.1;
   color: var(--good);
 }
 .best-move-text {
@@ -1100,7 +1129,8 @@ h3 {
   .gauge-detail {
     font-size: 0.62rem;
   }
-  .dashboard {
+  .dashboard,
+  .best-move {
     padding: 8px 10px;
   }
 }

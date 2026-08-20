@@ -56,6 +56,15 @@ export function uciToSan(fen: string, uci: string): string | null {
   return uciToMove(fen, uci)?.san ?? null;
 }
 
+/** Convertit un coup SAN ('Nf3', 'O-O') en notation UCI, ou null s'il est illegal. */
+export function sanToUci(fen: string, san: string): string | null {
+  try {
+    return moveToUci(new Chess(fen).move(san) as Move);
+  } catch {
+    return null;
+  }
+}
+
 /** Convertit un objet Move en notation UCI. */
 export function moveToUci(move: Move): string {
   return `${move.from}${move.to}${move.promotion ?? ''}`;

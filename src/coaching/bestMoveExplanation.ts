@@ -1,7 +1,7 @@
 import { Chess } from 'chess.js';
 import type { AnalysisResult, BestMoveExplanation, Color, Confidence, Square } from '@/types';
 import type { Move } from '@/chess/rules';
-import { legalMoves, uciToMove } from '@/chess/rules';
+import { legalMoves, sanToUci, uciToMove } from '@/chess/rules';
 import { fenWithTurn, safeFen } from '@/chess/fen';
 import { PIECE_VALUE, sanToFrench } from '@/chess/pieces';
 import {
@@ -80,7 +80,12 @@ export function explainBestMove(input: ExplainInput): BestMoveExplanation | null
   const foe = other(me);
   const reasons = collectReasons({ before, after, move, me, foe, analysis: input.analysis });
 
-  const consequence = pvConsequence(input.fen, input.analysis, me);
+  // Les deux informations tirees de la variante principale ne decrivent que le
+  // coup effectivement choisi par le moteur. Quand on explique un autre coup
+  // (le coup theorique d'une ouverture, par exemple), elles ne le concernent
+  // pas et sont donc ecartees plutot que recyclees a tort.
+  const isEngineChoice = uci === (input.analysis?.lines[0]?.pv[0] ?? null);
+  const consequence = isEngineChoice ? pvConsequence(input.fen, input.analysis, me) : null;
   const first = composeMoveSentence(reasons.slice(0, 2).map((r) => r.text));
   const second = consequence ?? (reasons[2] ? capitalize(`${reasons[2].text}.`) : null);
 
@@ -103,8 +108,28 @@ export function explainBestMove(input: ExplainInput): BestMoveExplanation | null
     to: move.to,
     text,
     confidence,
-    alternatives: nearlyEqualMoves(input.fen, input.analysis, uci),
+    alternatives: isEngineChoice ? nearlyEqualMoves(input.fen, input.analysis, uci) : [],
   };
+}
+
+/**
+ * Explique le coup theorique d'une position d'ouverture.
+ *
+ * Aucun moteur n'est sollicite : la reponse est deja connue par le repertoire,
+ * et les raisons sont lues directement sur l'echiquier. Les autres coups
+ * acceptes deviennent les alternatives citees.
+ */
+export function explainTheoryMove(
+  fen: string,
+  answers: readonly string[],
+): BestMoveExplanation | null {
+  const [main, ...others] = answers;
+  if (!main) return null;
+  const uci = sanToUci(fen, main);
+  if (!uci) return null;
+  const explanation = explainBestMove({ fen, analysis: null, uci });
+  if (!explanation) return null;
+  return { ...explanation, alternatives: others.slice(0, 2).map(sanToFrench) };
 }
 
 interface ReasonContext {

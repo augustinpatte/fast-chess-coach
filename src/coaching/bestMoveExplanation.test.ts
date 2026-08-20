@@ -5,6 +5,7 @@ import {
   alternativesSentence,
   equivalenceThreshold,
   explainBestMove,
+  explainTheoryMove,
   nearlyEqualMoves,
   pvConsequence,
 } from './bestMoveExplanation';
@@ -238,5 +239,63 @@ describe('coups presque equivalents', () => {
       'e2e4',
     );
     expect(result).toEqual([]);
+  });
+});
+
+describe('coup impose', () => {
+  it('n’emprunte pas la suite calculee pour un autre coup', () => {
+    // Le moteur annonce 1.e4 et sa suite ; on demande l'explication de 1.d4.
+    // La consequence « Après …, … gagne » ne concerne pas d4 et doit tomber.
+    const fen = '4k3/8/8/8/1n6/8/3PP3/1R2K3 w - - 0 1';
+    const engine = explainBestMove({
+      fen,
+      analysis: analysis(fen, [{ pv: ['e2e4', 'e8d8', 'b1b4'] }]),
+    });
+    const other = explainBestMove({
+      fen,
+      analysis: analysis(fen, [{ pv: ['e2e4', 'e8d8', 'b1b4'] }]),
+      uci: 'd2d4',
+    });
+    expect(engine?.text).toContain('Après');
+    expect(other?.san).toBe('d4');
+    expect(other?.text).not.toContain('Après');
+  });
+
+  it('ne presente pas les autres lignes du moteur comme ses equivalents', () => {
+    const chess = new Chess();
+    chess.move('e4');
+    chess.move('e5');
+    const fen = chess.fen();
+    const result = explainBestMove({
+      fen,
+      analysis: analysis(fen, [
+        { pv: ['g1f3'], score: { cp: 30, mate: null } },
+        { pv: ['f1c4'], score: { cp: 20, mate: null } },
+      ]),
+      uci: 'b1c3',
+    });
+    expect(result?.san).toBe('Cc3');
+    expect(result?.alternatives).toEqual([]);
+  });
+});
+
+describe('coup theorique', () => {
+  it('explique le coup du repertoire sans aucune analyse', () => {
+    const result = explainTheoryMove(POSITIONS.start, ['e4']);
+    expect(result?.san).toBe('e4');
+    expect(result?.uci).toBe('e2e4');
+    expect(result?.text).toContain('centre');
+    expect(respectsExplanationLimits(result!.text)).toBe(true);
+  });
+
+  it('cite les autres coups acceptes comme alternatives', () => {
+    const result = explainTheoryMove(POSITIONS.start, ['e4', 'd4', 'Nf3']);
+    expect(result?.alternatives).toEqual(['d4', 'Cf3']);
+    expect(alternativesSentence(result!)).toContain('d4 et Cf3');
+  });
+
+  it('renvoie null sans reponse exploitable', () => {
+    expect(explainTheoryMove(POSITIONS.start, [])).toBeNull();
+    expect(explainTheoryMove(POSITIONS.start, ['Cf6'])).toBeNull();
   });
 });

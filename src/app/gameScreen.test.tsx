@@ -69,9 +69,9 @@ describe('partie complete avec le tableau de position', () => {
 
   it('n’affiche le meilleur coup qu’a la demande, et patiente sans bloquer', () => {
     startGame();
-    expect(screen.queryByTestId('dashboard-best-move')).not.toBeInTheDocument();
+    expect(screen.queryByTestId('best-move-detail')).not.toBeInTheDocument();
     fireEvent.click(screen.getByTestId('show-best-move'));
-    expect(screen.getByTestId('dashboard-best-move')).toHaveTextContent('Analyse du moteur');
+    expect(screen.getByTestId('best-move-detail')).toHaveTextContent('Analyse du moteur');
     // L'echiquier reste jouable pendant l'attente.
     fireEvent.click(square('e2'));
     fireEvent.click(square('e4'));
@@ -80,8 +80,26 @@ describe('partie complete avec le tableau de position', () => {
 
   it('masque le bouton du meilleur coup en mode « Plan seulement »', () => {
     startGame({ nextMoveHelp: 'plan' });
+    expect(screen.queryByTestId('best-move-panel')).not.toBeInTheDocument();
     expect(screen.queryByTestId('show-best-move')).not.toBeInTheDocument();
     expect(screen.getByTestId('dashboard-plan')).toBeInTheDocument();
+  });
+
+  it('propose le meilleur coup meme sans le tableau de lecture', () => {
+    // Les deux reglages sont independants : on peut vouloir l'aide au coup
+    // suivant sans les jauges.
+    startGame({ showPositionDashboard: false });
+    expect(screen.queryByTestId('position-dashboard')).not.toBeInTheDocument();
+    expect(screen.getByTestId('best-move-panel')).toBeInTheDocument();
+    fireEvent.click(screen.getByTestId('show-best-move'));
+    expect(screen.getByTestId('best-move-detail')).toBeInTheDocument();
+  });
+
+  it('affiche le meilleur coup avant de jouer, sans passer par un coup annule', () => {
+    startGame({ nextMoveHelp: 'always' });
+    // Aucun coup n'a ete joue : l'aide est deja la.
+    expect(screen.getByTestId('move-list')).not.toHaveTextContent('1.');
+    expect(screen.getByTestId('best-move-detail')).toBeInTheDocument();
   });
 
   it('masque tout le tableau quand le reglage est desactive', () => {

@@ -1,11 +1,13 @@
 import { useCallback, useMemo, useState } from 'react';
 import { Chess } from 'chess.js';
-import type { Settings } from '@/types';
+import type { BoardArrow, Settings } from '@/types';
 import { Board } from '@/components/Board';
+import { BestMovePanel } from '@/components/BestMovePanel';
 import { OpeningCard } from '@/components/OpeningCard';
 import { REPERTOIRE, getOpeningById, trainingPositions } from '@/openings/book';
 import { sanToFrench } from '@/chess/pieces';
 import { formatCoachText } from '@/coaching/format';
+import { alternativesSentence, explainTheoryMove } from '@/coaching/bestMoveExplanation';
 
 export interface TrainerScreenProps {
   settings: Settings;
@@ -22,6 +24,7 @@ export function TrainerScreen(props: TrainerScreenProps): React.JSX.Element {
   const [index, setIndex] = useState(0);
   const [message, setMessage] = useState<string | null>(null);
   const [solved, setSolved] = useState(false);
+  const [asked, setAsked] = useState(false);
   const [score, setScore] = useState({ ok: 0, total: 0 });
 
   const opening = getOpeningById(openingId);
@@ -30,9 +33,28 @@ export function TrainerScreen(props: TrainerScreenProps): React.JSX.Element {
 
   const orientation: 'white' | 'black' = opening?.side === 'white' ? 'white' : 'black';
 
+  /**
+   * Le coup a jouer, explique avant de repondre.
+   *
+   * A l'entrainement, le bon coup est celui du repertoire : il est deja connu,
+   * donc aucune analyse moteur n'est necessaire. L'explication est produite par
+   * le meme module que pendant une partie, a partir de l'echiquier seul.
+   */
+  const help = props.settings.nextMoveHelp;
+  const hint = useMemo(
+    () => (current ? explainTheoryMove(current.fen, current.answers) : null),
+    [current],
+  );
+  const revealed = help === 'always' || asked;
+  const arrows = useMemo<BoardArrow[]>(
+    () => (revealed && hint ? [{ from: hint.from, to: hint.to, kind: 'best' as const }] : []),
+    [revealed, hint],
+  );
+
   const next = useCallback((): void => {
     setMessage(null);
     setSolved(false);
+    setAsked(false);
     setIndex((i) => (positions.length === 0 ? 0 : (i + 1) % positions.length));
   }, [positions.length]);
 
@@ -84,6 +106,7 @@ export function TrainerScreen(props: TrainerScreenProps): React.JSX.Element {
                 setScore({ ok: 0, total: 0 });
                 setMessage(null);
                 setSolved(false);
+                setAsked(false);
               }}
             />
           ))}
@@ -122,6 +145,7 @@ export function TrainerScreen(props: TrainerScreenProps): React.JSX.Element {
             animate={!props.settings.reduceAnimations}
             lastMove={null}
             checkSquare={null}
+            arrows={arrows}
             onMove={attempt}
           />
           <div className="trainer-side">
@@ -138,6 +162,20 @@ export function TrainerScreen(props: TrainerScreenProps): React.JSX.Element {
               <p className="coach-text" data-testid="trainer-message">
                 {message}
               </p>
+            ) : null}
+            {help !== 'plan' ? (
+              <BestMovePanel
+                title="Coup théorique"
+                explanation={hint}
+                alternatives={hint ? alternativesSentence(hint) : null}
+                revealed={revealed}
+                pending={false}
+                canRequest={help === 'on_demand'}
+                available={hint !== null && !solved}
+                onRequest={() => setAsked(true)}
+                onHide={() => setAsked(false)}
+                note={`Idée : ${current.idea}`}
+              />
             ) : null}
             <div className="row">
               <button type="button" className="btn btn-primary" onClick={next}>

@@ -6,6 +6,7 @@ import { EvalBar } from '@/components/EvalBar';
 import { MoveList } from '@/components/MoveList';
 import { CoachPanel } from '@/components/CoachPanel';
 import { PositionDashboard } from '@/components/PositionDashboard';
+import { BestMovePanel } from '@/components/BestMovePanel';
 import { GameControls } from '@/components/GameControls';
 import { GameOverDialog } from '@/components/GameOverDialog';
 import { keyMoments, type GameController } from '@/hooks/useGameController';
@@ -30,6 +31,11 @@ export function GameScreen(props: GameScreenProps): React.JSX.Element {
 
   const playerColor = controller.config?.playerColor ?? 'w';
 
+  // L'aide au prochain coup ne depend pas du tableau de lecture : on peut
+  // vouloir le meilleur coup avant de jouer sans afficher les jauges.
+  const helpEnabled = settings.nextMoveHelp !== 'plan';
+  const playing = controller.status === 'playing';
+
   // Le tableau de lecture reutilise l'analyse deja produite par le controleur :
   // il ne declenche aucune recherche supplementaire.
   const insight = usePositionInsight({
@@ -37,7 +43,7 @@ export function GameScreen(props: GameScreenProps): React.JSX.Element {
     perspective: playerColor,
     analysis: controller.analysis,
     help: settings.nextMoveHelp,
-    active: settings.showPositionDashboard && controller.status === 'playing',
+    active: (settings.showPositionDashboard || helpEnabled) && playing,
   });
 
   const orientation = useMemo<'white' | 'black'>(() => {
@@ -134,6 +140,20 @@ export function GameScreen(props: GameScreenProps): React.JSX.Element {
             feedback={controller.feedback}
             placeholder={placeholder}
             thinking={controller.thinking}
+          />
+        ) : null}
+
+        {helpEnabled && analysisVisible && playing ? (
+          <BestMovePanel
+            title="Meilleur coup"
+            explanation={insight.bestMove}
+            alternatives={insight.bestMoveAlternatives}
+            revealed={insight.bestMoveRequested}
+            pending={insight.bestMovePending}
+            canRequest={insight.canRequestBestMove}
+            available={insight.bestMoveAvailable}
+            onRequest={insight.requestBestMove}
+            onHide={insight.hideBestMove}
           />
         ) : null}
 

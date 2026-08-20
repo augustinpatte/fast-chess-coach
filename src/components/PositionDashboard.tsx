@@ -1,7 +1,7 @@
 import type { PositionFactor } from '@/types';
 import type { PositionInsight } from '@/hooks/usePositionInsight';
 import { isTacticalKind } from '@/coaching/positionAssessment';
-import { FACTOR_FULL_LABEL, PHASE_LABEL, POSITION_PHRASES } from '@/coaching/positionPhrases';
+import { FACTOR_FULL_LABEL, PHASE_LABEL } from '@/coaching/positionPhrases';
 
 export interface PositionDashboardProps {
   insight: PositionInsight;
@@ -55,8 +55,9 @@ function FactorGauge({ factor }: { factor: PositionFactor }): React.JSX.Element 
  * Tableau de lecture de position.
  *
  * Il repond a « qu'est-ce qui est important maintenant ? », la ou le panneau
- * du coach repond a « est-ce que mon dernier coup etait bon ? ». Les deux
- * restent volontairement separes.
+ * du coach repond a « est-ce que mon dernier coup etait bon ? » et celui du
+ * meilleur coup a « que dois-je jouer ? ». Les trois restent volontairement
+ * separes.
  *
  * Il s'affiche immediatement a partir des calculs locaux ; les elements qui
  * dependent du moteur se completent quand l'analyse arrive.
@@ -117,19 +118,8 @@ export function PositionDashboard(props: PositionDashboardProps): React.JSX.Elem
         <button type="button" className="btn btn-small" onClick={insight.showWatch}>
           Que regarder ?
         </button>
-        {insight.canRequestBestMove ? (
-          <button
-            type="button"
-            className="btn btn-small"
-            onClick={insight.requestBestMove}
-            disabled={!insight.bestMoveAvailable}
-            data-testid="show-best-move"
-          >
-            Voir le meilleur coup
-          </button>
-        ) : null}
-        {insight.watch || insight.bestMoveRequested ? (
-          <button type="button" className="btn btn-link btn-small" onClick={insight.clearHints}>
+        {insight.watch ? (
+          <button type="button" className="btn btn-link btn-small" onClick={insight.hideWatch}>
             Masquer
           </button>
         ) : null}
@@ -139,26 +129,6 @@ export function PositionDashboard(props: PositionDashboardProps): React.JSX.Elem
         <p className="dashboard-watch" data-testid="dashboard-watch" aria-live="polite">
           {insight.watch.text}
         </p>
-      ) : null}
-
-      {insight.bestMoveRequested ? (
-        <div className="dashboard-best" data-testid="dashboard-best-move" aria-live="polite">
-          {insight.bestMove ? (
-            <>
-              <p className="best-move-san">{insight.bestMove.san}</p>
-              <p className="best-move-text">{insight.bestMove.text}</p>
-              {insight.bestMoveAlternatives ? (
-                <p className="best-move-alt">{insight.bestMoveAlternatives}</p>
-              ) : null}
-            </>
-          ) : (
-            <p className="best-move-text hint">
-              {insight.bestMovePending
-                ? POSITION_PHRASES.waitingForEngine()
-                : POSITION_PHRASES.noBestMove()}
-            </p>
-          )}
-        </div>
       ) : null}
     </section>
   );

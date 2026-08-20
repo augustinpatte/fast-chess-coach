@@ -20,6 +20,12 @@ Après chaque coup du joueur, l'application affiche :
 - un bouton facultatif **« Voir plus »** avec le meilleur coup, une variante de 3-4
   demi-coups et le concept concerné.
 
+**Avant** de jouer, un panneau séparé donne le meilleur coup et une phrase qui explique
+pourquoi c'est le meilleur, sans avoir à jouer puis annuler. Il se règle dans
+*Réglages → Aide au prochain coup* (désactivée, sur demande, ou toujours affichée) et
+fonctionne en partie libre, en test d'ouverture et à l'entraînement d'ouverture, où le
+coup montré est celui du répertoire.
+
 Exemples réellement produits par l'application :
 
 ```

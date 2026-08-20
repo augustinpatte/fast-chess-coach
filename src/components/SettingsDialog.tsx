@@ -171,10 +171,14 @@ export function SettingsDialog(props: SettingsDialogProps): React.JSX.Element {
               update('nextMoveHelp', event.target.value as Settings['nextMoveHelp'])
             }
           >
-            <option value="plan">Plan seulement</option>
+            <option value="plan">Désactivée : plan seulement</option>
             <option value="on_demand">Meilleur coup sur demande</option>
-            <option value="always">Toujours montrer le meilleur coup</option>
+            <option value="always">Meilleur coup toujours affiché</option>
           </select>
+          <p className="hint">
+            Le meilleur coup s’affiche avant que tu joues, avec une phrase qui explique pourquoi
+            c’est le meilleur. Actif en partie libre, en test d’ouverture et à l’entraînement.
+          </p>
         </div>
 
         <Toggle
