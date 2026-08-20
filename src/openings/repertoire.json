@@ -1,0 +1,439 @@
+[
+  {
+    "id": "italian",
+    "name": "Partie italienne",
+    "side": "white",
+    "style": "actif",
+    "difficulty": "facile",
+    "goal": "Développement rapide, jeu naturel, idéale pour apprendre l'attaque.",
+    "variations": [
+      {
+        "name": "Giuoco Piano",
+        "moves": ["e4", "e5", "Nf3", "Nc6", "Bc4", "Bc5", "c3", "Nf6", "d3", "d6", "O-O"],
+        "idea": "Construire un centre solide avec c3 et d3 avant d'attaquer."
+      },
+      {
+        "name": "Défense des deux cavaliers",
+        "moves": ["e4", "e5", "Nf3", "Nc6", "Bc4", "Nf6", "d3", "Bc5", "O-O", "d6", "c3"],
+        "idea": "Roquer vite et garder le fou c4 pointé sur f7."
+      },
+      {
+        "name": "Gambit Evans",
+        "moves": ["e4", "e5", "Nf3", "Nc6", "Bc4", "Bc5", "b4", "Bxb4", "c3", "Ba5", "d4"],
+        "idea": "Offrir un pion pour prendre le centre et ouvrir les lignes."
+      },
+      {
+        "name": "Italienne avec roque rapide",
+        "moves": ["e4", "e5", "Nf3", "Nc6", "Bc4", "Bc5", "O-O", "Nf6", "d3", "O-O", "c3"],
+        "idea": "Mettre le roi à l'abri avant toute opération au centre."
+      }
+    ],
+    "commonMistakes": [
+      "Sortir la dame trop tôt en h5 pour tenter un mat rapide.",
+      "Jouer Ng5 sans préparation et perdre du temps.",
+      "Oublier de roquer et laisser le roi au centre."
+    ]
+  },
+  {
+    "id": "scotch",
+    "name": "Partie écossaise",
+    "side": "white",
+    "style": "tactique",
+    "difficulty": "facile",
+    "goal": "Ouvrir le centre immédiatement pour libérer les pièces.",
+    "variations": [
+      {
+        "name": "Écossaise classique",
+        "moves": ["e4", "e5", "Nf3", "Nc6", "d4", "exd4", "Nxd4", "Bc5", "Be3", "Qf6", "c3"],
+        "idea": "Échanger au centre et développer vite avec Be3 et c3."
+      },
+      {
+        "name": "Variante Schmidt",
+        "moves": ["e4", "e5", "Nf3", "Nc6", "d4", "exd4", "Nxd4", "Nf6", "Nxc6", "bxc6", "e5"],
+        "idea": "Gagner de l'espace avec e5 et gêner le cavalier f6."
+      },
+      {
+        "name": "Gambit Göring",
+        "moves": ["e4", "e5", "Nf3", "Nc6", "d4", "exd4", "Bc4", "Bc5", "c3", "dxc3", "Nxc3"],
+        "idea": "Donner un pion pour un développement très rapide."
+      }
+    ],
+    "commonMistakes": [
+      "Reprendre en d4 avec la dame et se faire attaquer par Nc6.",
+      "Laisser le cavalier d4 sans défense après un échange au centre."
+    ]
+  },
+  {
+    "id": "london",
+    "name": "Système de Londres",
+    "side": "white",
+    "style": "solide",
+    "difficulty": "facile",
+    "goal": "Un plan simple et répétable : Bf4, e3, Bd3, Nbd2, c3.",
+    "variations": [
+      {
+        "name": "Londres contre d5",
+        "moves": ["d4", "d5", "Nf3", "Nf6", "Bf4", "e6", "e3", "c5", "c3", "Nc6", "Nbd2"],
+        "idea": "Installer le fou hors de la chaîne de pions puis roquer."
+      },
+      {
+        "name": "Londres contre Est-indienne",
+        "moves": ["d4", "Nf6", "Nf3", "g6", "Bf4", "Bg7", "e3", "O-O", "Be2", "d6", "h3"],
+        "idea": "Éviter Nh5 grâce à h3 et garder une structure sans faiblesse."
+      },
+      {
+        "name": "Londres immédiate",
+        "moves": ["d4", "d5", "Bf4", "Nf6", "e3", "e6", "Nf3", "Bd6", "Bg3", "O-O", "Bd3"],
+        "idea": "Échanger les fous et jouer sur la colonne e."
+      }
+    ],
+    "commonMistakes": [
+      "Jouer Bf4 après e3 et enfermer le fou derrière ses pions.",
+      "Oublier c3 et laisser Qb6 attaquer b2 et d4."
+    ]
+  },
+  {
+    "id": "queens-gambit",
+    "name": "Gambit dame",
+    "side": "white",
+    "style": "positionnel",
+    "difficulty": "moyen",
+    "goal": "Échanger le pion c contre le pion d pour dominer le centre.",
+    "variations": [
+      {
+        "name": "Gambit dame refusé",
+        "moves": ["d4", "d5", "c4", "e6", "Nc3", "Nf6", "Bg5", "Be7", "e3", "O-O", "Nf3"],
+        "idea": "Pression sur d5 et développement harmonieux."
+      },
+      {
+        "name": "Gambit dame accepté",
+        "moves": ["d4", "d5", "c4", "dxc4", "Nf3", "Nf6", "e3", "e6", "Bxc4", "c5", "O-O"],
+        "idea": "Récupérer le pion c4 et ouvrir la position au centre."
+      },
+      {
+        "name": "Contre la Slave",
+        "moves": ["d4", "d5", "c4", "c6", "Nf3", "Nf6", "Nc3", "dxc4", "a4", "Bf5", "e3"],
+        "idea": "Empêcher b5 avec a4 et reprendre tranquillement en c4."
+      }
+    ],
+    "commonMistakes": [
+      "Croire que le pion c4 est vraiment donné et essayer de le garder à tout prix.",
+      "Sortir le fou c1 avant d'avoir joué e3 et bloquer sa propre position."
+    ]
+  },
+  {
+    "id": "ruy-lopez",
+    "name": "Partie espagnole",
+    "side": "white",
+    "style": "positionnel",
+    "difficulty": "exigeant",
+    "goal": "Presser le cavalier c6 pour affaiblir le centre noir.",
+    "variations": [
+      {
+        "name": "Défense Morphy",
+        "moves": ["e4", "e5", "Nf3", "Nc6", "Bb5", "a6", "Ba4", "Nf6", "O-O", "Be7", "Re1"],
+        "idea": "Garder le fou sur la diagonale a2-g8 et préparer c3 puis d4."
+      },
+      {
+        "name": "Variante d'échange",
+        "moves": ["e4", "e5", "Nf3", "Nc6", "Bb5", "a6", "Bxc6", "dxc6", "O-O", "f6", "d4"],
+        "idea": "Doubler les pions noirs et viser une finale favorable."
+      },
+      {
+        "name": "Défense berlinoise",
+        "moves": ["e4", "e5", "Nf3", "Nc6", "Bb5", "Nf6", "O-O", "Nxe4", "d4", "Nd6", "Bxc6"],
+        "idea": "Position technique où la structure compte plus que l'attaque."
+      },
+      {
+        "name": "Défense Steinitz",
+        "moves": ["e4", "e5", "Nf3", "Nc6", "Bb5", "d6", "d4", "Bd7", "Nc3", "Nf6", "O-O"],
+        "idea": "Centre solide pour les blancs, jeu tranquille et sûr."
+      }
+    ],
+    "commonMistakes": [
+      "Prendre en c6 trop tôt sans raison et donner la paire de fous.",
+      "Laisser le pion e4 sans défense après O-O."
+    ]
+  },
+  {
+    "id": "english",
+    "name": "Ouverture anglaise",
+    "side": "white",
+    "style": "positionnel",
+    "difficulty": "moyen",
+    "goal": "Contrôler d5 depuis le flanc avant d'ouvrir le centre.",
+    "variations": [
+      {
+        "name": "Anglaise symétrique",
+        "moves": ["c4", "c5", "Nf3", "Nf6", "Nc3", "Nc6", "g3", "g6", "Bg2", "Bg7", "O-O"],
+        "idea": "Fianchetto et pression tranquille sur la grande diagonale."
+      },
+      {
+        "name": "Sicilienne inversée",
+        "moves": ["c4", "e5", "Nc3", "Nf6", "g3", "d5", "cxd5", "Nxd5", "Bg2", "Nb6", "Nf3"],
+        "idea": "Jouer une sicilienne avec un temps de plus."
+      },
+      {
+        "name": "Anglaise transposée",
+        "moves": ["c4", "Nf6", "Nc3", "e6", "Nf3", "d5", "d4", "Be7", "Bg5", "O-O", "e3"],
+        "idea": "Revenir sur un gambit dame par transposition."
+      }
+    ],
+    "commonMistakes": [
+      "Jouer d4 trop tôt sans avoir développé les cavaliers.",
+      "Négliger le fianchetto et laisser la diagonale h1-a8 fermée."
+    ]
+  },
+  {
+    "id": "open-e5",
+    "name": "Défense 1...e5",
+    "side": "black-e4",
+    "style": "actif",
+    "difficulty": "facile",
+    "goal": "Répondre au centre par le centre : simple, sain et naturel.",
+    "variations": [
+      {
+        "name": "Italienne côté noir",
+        "moves": ["e4", "e5", "Nf3", "Nc6", "Bc4", "Bc5", "c3", "Nf6", "d3", "d6", "O-O", "O-O"],
+        "idea": "Copier le développement blanc et roquer rapidement."
+      },
+      {
+        "name": "Espagnole côté noir",
+        "moves": ["e4", "e5", "Nf3", "Nc6", "Bb5", "a6", "Ba4", "Nf6", "O-O", "Be7", "Re1", "b5"],
+        "idea": "Chasser le fou avec a6 et b5 puis consolider e5."
+      },
+      {
+        "name": "Deux cavaliers",
+        "moves": ["e4", "e5", "Nf3", "Nc6", "Bc4", "Nf6", "Ng5", "d5", "exd5", "Na5", "Bb5+", "c6"],
+        "idea": "Accepter un jeu tranchant en échange d'un développement rapide."
+      },
+      {
+        "name": "Contre la partie viennoise",
+        "moves": ["e4", "e5", "Nc3", "Nf6", "f4", "d5", "fxe5", "Nxe4", "Nf3", "Bg4"],
+        "idea": "Ouvrir le centre par d5 dès que les blancs jouent f4."
+      }
+    ],
+    "commonMistakes": [
+      "Jouer Nf6 puis Ng4 et perdre du temps.",
+      "Sortir la dame en f6 et bloquer son propre cavalier."
+    ]
+  },
+  {
+    "id": "caro-kann",
+    "name": "Défense Caro-Kann",
+    "side": "black-e4",
+    "style": "solide",
+    "difficulty": "facile",
+    "goal": "Construire un centre sûr et développer le fou c8 avant e6.",
+    "variations": [
+      {
+        "name": "Variante d'avance",
+        "moves": ["e4", "c6", "d4", "d5", "e5", "Bf5", "Nf3", "e6", "Be2", "Nd7", "O-O"],
+        "idea": "Sortir le fou en f5 avant de fermer avec e6."
+      },
+      {
+        "name": "Variante principale",
+        "moves": ["e4", "c6", "d4", "d5", "Nc3", "dxe4", "Nxe4", "Bf5", "Ng3", "Bg6", "h4", "h6"],
+        "idea": "Échanger au centre et garder une structure sans faiblesse."
+      },
+      {
+        "name": "Variante d'échange",
+        "moves": ["e4", "c6", "d4", "d5", "exd5", "cxd5", "Bd3", "Nc6", "c3", "Nf6", "Bf4"],
+        "idea": "Position symétrique et facile à jouer."
+      },
+      {
+        "name": "Attaque Panov",
+        "moves": ["e4", "c6", "d4", "d5", "exd5", "cxd5", "c4", "Nf6", "Nc3", "e6", "Nf3"],
+        "idea": "Accepter un pion isolé adverse et bloquer la case d5."
+      }
+    ],
+    "commonMistakes": [
+      "Jouer e6 avant d'avoir sorti le fou c8, qui reste enfermé.",
+      "Reprendre en d5 avec la dame et se faire attaquer par Nc3."
+    ]
+  },
+  {
+    "id": "french",
+    "name": "Défense française",
+    "side": "black-e4",
+    "style": "solide",
+    "difficulty": "moyen",
+    "goal": "Chaîne de pions solide et contre-attaque sur la case d4.",
+    "variations": [
+      {
+        "name": "Variante d'avance",
+        "moves": ["e4", "e6", "d4", "d5", "e5", "c5", "c3", "Nc6", "Nf3", "Qb6", "Be2"],
+        "idea": "Attaquer la base de la chaîne blanche avec c5 et Qb6."
+      },
+      {
+        "name": "Variante Tarrasch",
+        "moves": ["e4", "e6", "d4", "d5", "Nd2", "c5", "exd5", "exd5", "Ngf3", "Nc6", "Bb5"],
+        "idea": "Ouvrir la position et libérer le fou f8."
+      },
+      {
+        "name": "Variante Winawer",
+        "moves": ["e4", "e6", "d4", "d5", "Nc3", "Bb4", "e5", "c5", "a3", "Bxc3+", "bxc3", "Ne7"],
+        "idea": "Donner la paire de fous pour abîmer la structure blanche."
+      },
+      {
+        "name": "Variante d'échange",
+        "moves": ["e4", "e6", "d4", "d5", "exd5", "exd5", "Nf3", "Nf6", "Bd3", "Bd6", "O-O"],
+        "idea": "Position symétrique : développer vite et roquer."
+      }
+    ],
+    "commonMistakes": [
+      "Oublier de jouer c5 et rester passif.",
+      "Développer le fou c8 en d7 sans plan et l'enfermer."
+    ]
+  },
+  {
+    "id": "sicilian",
+    "name": "Défense sicilienne",
+    "side": "black-e4",
+    "style": "tactique",
+    "difficulty": "exigeant",
+    "goal": "Déséquilibrer la partie et jouer sur l'aile dame.",
+    "variations": [
+      {
+        "name": "Najdorf",
+        "moves": ["e4", "c5", "Nf3", "d6", "d4", "cxd4", "Nxd4", "Nf6", "Nc3", "a6", "Be2"],
+        "idea": "Préparer e5 ou b5 en gardant toutes les options."
+      },
+      {
+        "name": "Dragon",
+        "moves": ["e4", "c5", "Nf3", "d6", "d4", "cxd4", "Nxd4", "Nf6", "Nc3", "g6", "Be3"],
+        "idea": "Fianchetto agressif visant la grande diagonale."
+      },
+      {
+        "name": "Variante accélérée",
+        "moves": ["e4", "c5", "Nf3", "Nc6", "d4", "cxd4", "Nxd4", "g6", "Nc3", "Bg7", "Be3"],
+        "idea": "Développement rapide sans jouer d6."
+      },
+      {
+        "name": "Contre l'Alapin",
+        "moves": ["e4", "c5", "c3", "Nf6", "e5", "Nd5", "d4", "cxd4", "Nf3", "Nc6", "cxd4"],
+        "idea": "Attaquer le centre blanc avant qu'il ne se stabilise."
+      }
+    ],
+    "commonMistakes": [
+      "Reprendre en d4 avec la dame et perdre du temps.",
+      "Jouer trop tôt e5 et créer un trou en d5."
+    ]
+  },
+  {
+    "id": "qgd-black",
+    "name": "Gambit dame refusé",
+    "side": "black-d4",
+    "style": "solide",
+    "difficulty": "facile",
+    "goal": "Tenir le centre avec d5 et e6, puis développer sans risque.",
+    "variations": [
+      {
+        "name": "Ligne principale",
+        "moves": ["d4", "d5", "c4", "e6", "Nc3", "Nf6", "Bg5", "Be7", "e3", "O-O", "Nf3"],
+        "idea": "Défendre d5 et roquer avant d'ouvrir le jeu."
+      },
+      {
+        "name": "Contre Nf3",
+        "moves": ["d4", "d5", "c4", "e6", "Nf3", "Nf6", "Nc3", "Be7", "Bf4", "O-O", "e3"],
+        "idea": "Développement naturel, structure sans faiblesse."
+      },
+      {
+        "name": "Système Catalan",
+        "moves": ["d4", "d5", "c4", "e6", "Nf3", "Nf6", "g3", "Be7", "Bg2", "O-O", "O-O"],
+        "idea": "Rester solide face au fianchetto blanc."
+      }
+    ],
+    "commonMistakes": [
+      "Prendre en c4 sans pouvoir garder le pion.",
+      "Jouer Bf5 trop tôt et laisser Qb3 attaquer b7."
+    ]
+  },
+  {
+    "id": "slav",
+    "name": "Défense slave",
+    "side": "black-d4",
+    "style": "solide",
+    "difficulty": "facile",
+    "goal": "Soutenir d5 avec c6 en gardant le fou c8 libre.",
+    "variations": [
+      {
+        "name": "Slave principale",
+        "moves": ["d4", "d5", "c4", "c6", "Nf3", "Nf6", "Nc3", "dxc4", "a4", "Bf5", "e3"],
+        "idea": "Prendre en c4 puis développer le fou avant e6."
+      },
+      {
+        "name": "Slave d'échange",
+        "moves": ["d4", "d5", "c4", "c6", "cxd5", "cxd5", "Nc3", "Nf6", "Nf3", "Nc6", "Bf4"],
+        "idea": "Position symétrique, très sûre pour les noirs."
+      },
+      {
+        "name": "Semi-slave",
+        "moves": ["d4", "d5", "c4", "c6", "Nf3", "Nf6", "Nc3", "e6", "e3", "Nbd7", "Bd3"],
+        "idea": "Préparer dxc4 suivi de b5 pour gagner de l'espace."
+      }
+    ],
+    "commonMistakes": [
+      "Jouer e6 puis Bf5 : le fou reste bloqué.",
+      "Garder le pion c4 avec b5 sans avoir préparé a6."
+    ]
+  },
+  {
+    "id": "kings-indian",
+    "name": "Défense est-indienne",
+    "side": "black-d4",
+    "style": "tactique",
+    "difficulty": "exigeant",
+    "goal": "Laisser le centre aux blancs puis le contre-attaquer par e5 ou c5.",
+    "variations": [
+      {
+        "name": "Variante classique",
+        "moves": ["d4", "Nf6", "c4", "g6", "Nc3", "Bg7", "e4", "d6", "Nf3", "O-O", "Be2"],
+        "idea": "Roquer puis frapper le centre avec e5."
+      },
+      {
+        "name": "Fianchetto",
+        "moves": ["d4", "Nf6", "c4", "g6", "Nf3", "Bg7", "g3", "O-O", "Bg2", "d6", "O-O"],
+        "idea": "Jeu plus calme, pression sur la grande diagonale."
+      },
+      {
+        "name": "Variante Sämisch",
+        "moves": ["d4", "Nf6", "c4", "g6", "Nc3", "Bg7", "e4", "d6", "f3", "O-O", "Be3"],
+        "idea": "Position fermée où il faut jouer c5 ou e5 au bon moment."
+      }
+    ],
+    "commonMistakes": [
+      "Ouvrir le centre trop tôt et subir l'espace blanc.",
+      "Oublier de roquer avant de lancer f5."
+    ]
+  },
+  {
+    "id": "nimzo-indian",
+    "name": "Défense Nimzo-indienne",
+    "side": "black-d4",
+    "style": "positionnel",
+    "difficulty": "moyen",
+    "goal": "Clouer le cavalier c3 pour contrôler la case e4.",
+    "variations": [
+      {
+        "name": "Variante Rubinstein",
+        "moves": ["d4", "Nf6", "c4", "e6", "Nc3", "Bb4", "e3", "O-O", "Bd3", "d5", "Nf3"],
+        "idea": "Développement rapide et pression sur le centre."
+      },
+      {
+        "name": "Variante classique",
+        "moves": ["d4", "Nf6", "c4", "e6", "Nc3", "Bb4", "Qc2", "O-O", "a3", "Bxc3+", "Qxc3", "b6"],
+        "idea": "Échanger le fou contre le cavalier pour abîmer la structure."
+      },
+      {
+        "name": "Variante Sämisch",
+        "moves": ["d4", "Nf6", "c4", "e6", "Nc3", "Bb4", "a3", "Bxc3+", "bxc3", "c5", "e3"],
+        "idea": "Bloquer les pions doublés blancs et attaquer c4."
+      }
+    ],
+    "commonMistakes": [
+      "Reprendre le fou trop tôt sans compensation.",
+      "Jouer d5 et c5 sans avoir développé les pièces mineures."
+    ]
+  }
+]
